@@ -62,6 +62,34 @@
 			
 			}
 			
+	function downloadFile() {
+			alert('baal');
+		   var fileTransfer = new FileTransfer();
+		   var uri = encodeURI("http://typo3.vrisini.com/fabdyl/fileadmin/user_upload/tempbill/3_305_bill.pdf");
+		   var fileURL =  "///storage/emulated/0/DCIM/myFile";
+
+		   fileTransfer.download(
+		   alert('baal hai');
+		      uri, fileURL, function(entry) {
+			  alert('downloade');
+		         console.log("download complete: " + entry.toURL());
+		      },
+				
+		      function(error) {
+			  alert('bada baal');
+		         console.log("download error source " + error.source);
+		         console.log("download error target " + error.target);
+		         console.log("download error code" + error.code);
+		      },
+				
+		      false, {
+		         headers: {
+		            "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+		         }
+		      }
+		   );
+		}
+			
 			
     </script>
 </body>
