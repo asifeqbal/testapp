@@ -52,53 +52,44 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
 		
-		document.addEventListener("deviceready",onDeviceReady,false);	
-		document.getElementById("uploadFile").addEventListener("click", uploadFile);
-		document.getElementById("downloadFile").addEventListener("click", downloadFile);	
+		module.controller('MyCtrl', function($scope, $timeout, $cordovaFileTransfer) {
+
+  document.addEventListener('deviceready', function () {
+
+    var url = "https://cdn1.truelancer.com/user-picture/355692-59367e248adec.jpg";
+    var targetPath = cordova.file.documentsDirectory + "testImage.png";
+    var trustHosts = true;
+    var options = {};
+	alert('baal');
+
+    $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+        // Error
+      }, function (progress) {
+        $timeout(function () {
+          $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+        });
+      });
+
+   }, false);
 
 
-		function onDeviceReady(){
-			alert('Device Ready');
+  document.addEventListener('deviceready', function () {
 
-				downloader.get("http://typo3.vrisini.com/fabdyl/fileadmin/user_upload/tempbill/3_305_bill.pdf");		
-			}
-			
-			
-			function downloadFile() {
-				alert('hello');
-				var fileURL = cordova.file.dataDirectory + 'file.gif';
-				var uri = encodeURI("https://49.media.tumblr.com/b9f6d8d738b6da97541f5cbdcb0e8ab5/tumblr_o5w2roswuy1ukldkho1_400.gif");
+    $cordovaFileTransfer.upload(server, filePath, options)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+        // Error
+      }, function (progress) {
+        // constant progress updates
+      });
 
-				var fileTransfer = new FileTransfer();
+  }, false);
 
-				fileTransfer.download(
-					uri,
-					fileURL,
-					function(entry) {
-						console.log("download complete: " + entry.toURL());
-						alert('baal');
-					},
-					function(error) {
-						console.log("download error source " + error.source);
-						console.log("download error target " + error.target);
-					  
-						// 1 = FileTransferError.FILE_NOT_FOUND_ERR
-						// 2 = FileTransferError.INVALID_URL_ERR
-						// 3 = FileTransferError.CONNECTION_ERR
-						// 4 = FileTransferError.ABORT_ERR
-						// 5 = FileTransferError.NOT_MODIFIED_ERR
-						console.log("upload error code " + error.code);
-					},
-					false,
-					{
-						headers: {
-							// add custom headers if needed
-						}
-					}
-				);
-		}	
-			
-	
+});
 			
     </script>
 </body>
