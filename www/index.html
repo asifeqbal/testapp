@@ -60,31 +60,43 @@
 		function onDeviceReady(){
 			alert('Device Ready');
 
-				function downloadFile() {
-				   var fileTransfer = new FileTransfer();
-				   var uri = encodeURI("http://typo3.vrisini.com/fabdyl/fileadmin/user_upload/tempbill/3_305_bill.pdf");
-				   var fileURL =  "///storage/emulated/0/DCIM/myFile";
-
-				   fileTransfer.download(
-					  uri, fileURL, function(entry) {
-						 console.log("download complete: " + entry.toURL());
-					  },
 						
-					  function(error) {
-						 console.log("download error source " + error.source);
-						 console.log("download error target " + error.target);
-						 console.log("download error code" + error.code);
-					  },
-						
-					  false, {
-						 headers: {
-							"Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-						 }
-					  }
-				   );
-				}			
-			
 			}
+			
+			
+			function downloadFile() {
+				alert('hello');
+				var fileURL = cordova.file.dataDirectory + 'file.gif';
+				var uri = encodeURI("https://49.media.tumblr.com/b9f6d8d738b6da97541f5cbdcb0e8ab5/tumblr_o5w2roswuy1ukldkho1_400.gif");
+
+				var fileTransfer = new FileTransfer();
+
+				fileTransfer.download(
+					uri,
+					fileURL,
+					function(entry) {
+						console.log("download complete: " + entry.toURL());
+						alert('baal');
+					},
+					function(error) {
+						console.log("download error source " + error.source);
+						console.log("download error target " + error.target);
+					  
+						// 1 = FileTransferError.FILE_NOT_FOUND_ERR
+						// 2 = FileTransferError.INVALID_URL_ERR
+						// 3 = FileTransferError.CONNECTION_ERR
+						// 4 = FileTransferError.ABORT_ERR
+						// 5 = FileTransferError.NOT_MODIFIED_ERR
+						console.log("upload error code " + error.code);
+					},
+					false,
+					{
+						headers: {
+							// add custom headers if needed
+						}
+					}
+				);
+		}	
 			
 	
 			
