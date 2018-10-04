@@ -52,44 +52,40 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
 		
-		module.controller('MyCtrl', function($scope, $timeout, $cordovaFileTransfer) {
-
-  document.addEventListener('deviceready', function () {
-
-    var url = "https://cdn1.truelancer.com/user-picture/355692-59367e248adec.jpg";
-    var targetPath = cordova.file.documentsDirectory + "testImage.png";
-    var trustHosts = true;
-    var options = {};
-	alert('baal');
-
-    $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
-      .then(function(result) {
-        // Success!
-      }, function(err) {
-        // Error
-      }, function (progress) {
-        $timeout(function () {
-          $scope.downloadProgress = (progress.loaded / progress.total) * 100;
-        });
-      });
-
-   }, false);
+		document.addEventListener("deviceready",onDeviceReady,false);	
+		document.getElementById("uploadFile").addEventListener("click", uploadFile);
+		document.getElementById("downloadFile").addEventListener("click", downloadFile);	
 
 
-  document.addEventListener('deviceready', function () {
+		function onDeviceReady(){
+			alert('Device Ready');
 
-    $cordovaFileTransfer.upload(server, filePath, options)
-      .then(function(result) {
-        // Success!
-      }, function(err) {
-        // Error
-      }, function (progress) {
-        // constant progress updates
-      });
+				downloader.get("https://cdn1.truelancer.com/user-picture/355692-59367e248adec.jpg");
 
-  }, false);
+			var fileTransfer = new FileTransfer();
+			var uri = encodeURI("http://typo3.vrisini.com/fabdyl/fileadmin/user_upload/tempbill/3_305_bill.pdf");
 
-});
+			fileTransfer.download(
+				uri,
+				fileURL,
+				function(entry) {
+					console.log("download complete: " + entry.toURL());
+				},
+				function(error) {
+					console.log("download error source " + error.source);
+					console.log("download error target " + error.target);
+					console.log("download error code" + error.code);
+				},
+				false,
+				{
+					headers: {
+						"Hello world"
+					}
+				}
+			);				
+		}
+			
+	
 			
     </script>
 </body>
