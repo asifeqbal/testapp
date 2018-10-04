@@ -19,34 +19,9 @@
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "org.myapp.sample"
     },
-    "cordova-plugin-file-downloader": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    },
-    "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    },
-    "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-file": {
       "PACKAGE_NAME": "org.myapp.sample"
     }
   },
-  "dependent_plugins": {
-    "cordova-plugin-file": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    },
-    "cordova-plugin-zip": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    },
-    "cordova-plugin-file-md5": {
-      "PACKAGE_NAME": "org.myapp.sample"
-    }
-  }
+  "dependent_plugins": {}
 }
